@@ -75,12 +75,12 @@ const postUser = (req, res) => {
 
 const updateUser = (req, res) => {
   const id = parseInt(req.params.id);
-  const { firstname, lastname, email, city, language } = req.body;
+  const { firstname, lastname, email, city, language, hashedPassword } = req.body;
 
   database
     .query(
-      "update users set firstname = ?, lastname = ?, email = ?, city = ?, language = ? where id = ?",
-      [firstname, lastname, email, city, language, id]
+      "update users set firstname = ?, lastname = ?, email = ?, city = ?, language = ? where id = ?, hashedPassword = ?",
+      [firstname, lastname, email, city, language, id, hashedPassword]
     )
     .then(([result]) => {
       if (result.affectedRows === 0) {
